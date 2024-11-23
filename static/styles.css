@@ -1,0 +1,42 @@
+/* Import Google Font */
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  min-height: 100vh; /* Ensure the body takes the full viewport height */
+  margin: 0; /* Remove default body margins */
+  background: linear-gradient(
+    135deg,
+    #eef2f3,
+    #d8e3e7
+  ); /* Subtle background gradient */
+}
+
+/* Style for h1 */
+h1.text-center {
+  font-size: 3rem; /* Adjust the size as needed */
+  color: #0dcaf0; /* A pleasant blue color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  margin-bottom: 20px; /* Space below the title */
+  letter-spacing: 2px; /* Spacing between letters */
+}
+
+/* Style for h2 */
+h2.text-center {
+  font-size: 1.5rem; /* Adjust the size as needed */
+  color: #555555; /* A softer gray color */
+  margin-bottom: 30px; /* Space below the subtitle */
+  font-weight: 400; /* Regular weight */
+  letter-spacing: 1px; /* Spacing between letters */
+}
+
+/* Enhance the container with a subtle background and padding */
+.container {
+  padding: 40px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 800px; /* Optional: Limit the container width */
+  width: 100%; /* Make it responsive */
+}
