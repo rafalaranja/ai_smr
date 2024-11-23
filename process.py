@@ -1,54 +1,22 @@
-import whisper
-import warnings
+from moviepy import VideoFileClip, AudioFileClip
 
-# Transcribe audio
-def transcribe_audio(audio_file_path):
+def merge_audio_with_video(video_file_path, audio_file_path, output_file_path):
     try:
-        # Suppress warnings
-        warnings.filterwarnings("ignore", category=FutureWarning)
-        # Load Whisper model
-        model = whisper.load_model("base")  # You can use "small", "medium", or "large" models if needed
+        # Load video and audio
+        video = VideoFileClip(video_file_path)
+        audio = AudioFileClip(audio_file_path)
 
-        # Transcribe the audio
-        result = model.transcribe(audio_file_path, fp16=False)
+        # Check if FPS is valid
+        fps = video.fps if video.fps else 24  # Default to 24 if FPS is None or invalid
 
-        # Get the transcript text
-        transcript = result['text']
+        # Set the new audio to the video
+        video_with_audio = video.set_audio(audio)
 
-        print(f"Transcription complete:\n{transcript}")
-        return transcript  # Only return the transcript
+        # Write the final video to the output file
+        video_with_audio.write_videofile(output_file_path, codec="libx264", audio_codec="aac", fps=fps)
+
+        print(f"Merged video saved to {output_file_path}")
+        return output_file_path
     except Exception as e:
-        print(f"Error in transcription: {e}")
-        return None  # Return None if there's an error
-
-
-########################################################################################################################
-
-# api_key : sk_a082c25a00c3c6e00f030a864c1a6688ca47efadcf306e06
-
-from elevenlabs import save
-from elevenlabs.client import ElevenLabs
-
-client = ElevenLabs(
-        api_key="sk_a082c25a00c3c6e00f030a864c1a6688ca47efadcf306e06"  # Defaults to ELEVEN_API_KEY
-    )
-
-
-#Generate whisper-style audio
-def generate_whisper_audio(transcript):
-    try:
-        # Generate whisper-style audio
-        audio = client.generate(
-            text=transcript,
-            voice="Brian",
-            model="eleven_multilingual_v2"
-        )
-
-        output_audio_path = "whisper_audio.mp3"
-        save(audio, output_audio_path)
-
-        print(f"Whisper audio saved to {output_audio_path}")
-        return output_audio_path
-    except Exception as e:
-        print(f"Error generating whisper audio: {e}")
+        print(f"Error merging audio with video: {e}")
         return None
