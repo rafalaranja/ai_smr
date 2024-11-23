@@ -41,16 +41,30 @@ h2.text-center {
   width: 100%; /* Make it responsive */
 }
 
+/* Center the spinner on the page */
+#loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the spinner */
+  z-index: 9999; /* Ensure it is above other content */
+}
+
+/* Define the rotating animation */
 .spinner-border {
   width: 3rem;
   height: 3rem;
-  margin: 1rem auto;
-  display: block;
+  border: 4px solid transparent;
+  border-top-color: #17a2b8; /* Bootstrap's primary blue color */
+  animation: spin 1s linear infinite;
 }
 
-#loading-spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* Add rotation animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

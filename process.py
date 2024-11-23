@@ -30,7 +30,7 @@ from elevenlabs import save
 from elevenlabs.client import ElevenLabs
 
 client = ElevenLabs(
-        api_key="sk_1e0d0b2607878573dfbf1e88bbeb09d023a15dd2223b9e9b"
+        api_key="sk_49ca71d2c410ed3c90aa2f87d314c01183530f03b373edd5"
     )
 
 
