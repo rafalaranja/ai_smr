@@ -1,41 +1,41 @@
-from download import download_audio
-
-import whisper
-
-import whisper
-
-def transcribe_audio(audio_file_path):
-    try:
-        # Load Whisper model
-        model = whisper.load_model("base")  # You can use "small", "medium", or "large" models if needed
-
-        # Transcribe the audio
-        result = model.transcribe(audio_file_path)
-
-        # Get the transcript text
-        transcript = result['text']
-
-        print(f"Transcription complete:\n{transcript}")
-        return transcript  # Only return the transcript
-    except Exception as e:
-        print(f"Error in transcription: {e}")
-        return None  # Return None if there's an error
-
+from process import transcribe_audio, generate_whisper_audio
+from moviepy.video.io.VideoFileClip import VideoFileClip
+import os
 
 # Main
 if __name__ == "__main__":
+    # Part 1: Upload a video file locally
+    video_file_path = input("Enter the path to the video file: ")
 
-    # Part 1: Download audio from YouTube video
-    youtube_url = input("Enter YouTube URL: ")
-    audio_path = download_audio(youtube_url)
-    if audio_path:
-        print(f"Downloaded audio file path: {audio_path}")
+    if not os.path.exists(video_file_path):
+        print("The provided file path does not exist.")
     else:
-        print("Failed to download audio.")
+        # Convert video file to audio
+        audio_file_path = video_file_path.replace(".mp4", ".wav")  # Assuming input is MP4
 
-    # Part 2: Transcribe audio to text
-    transcript = transcribe_audio(audio_path)
-    if transcript:
-        print(f"Transcription saved as {transcript}")
-    else:
-        print("Failed to transcribe audio.")
+        try:
+            print("Extracting audio from the video...")
+            video_clip = VideoFileClip(video_file_path)
+            video_clip.audio.write_audiofile(audio_file_path)
+            print(f"Audio extracted and saved as: {audio_file_path}")
+        except Exception as e:
+            print(f"Error extracting audio: {e}")
+            exit()
+
+        # Part 2: Transcribe audio to text
+        transcript = transcribe_audio(audio_file_path)
+        if transcript:
+            # Save the transcript to a file
+            transcript_file_path = video_file_path.replace(".mp4", "_transcript.txt")
+            try:
+                with open(transcript_file_path, "w", encoding="utf-8") as file:
+                    file.write(transcript)
+                print(f"Transcription saved to file: {transcript_file_path}")
+            except Exception as e:
+                print(f"Error saving transcription to file: {e}")
+
+            # Part 3: Generate whisper-like audio
+            generate_whisper_audio(transcript)  # Generate whisper-style audio from the transcript
+
+        else:
+            print("Failed to transcribe audio.")
