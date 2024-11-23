@@ -39,8 +39,8 @@ if __name__ == "__main__":
     print(f"Whisper-like audio generated and saved at: {whisper_audio_path}")
 
     # Part 4: Add ASMR effects to the whisper-like audio
-    rain_audio_path = "rain.mp3"  # Path to your rain audio file
-    tapping_audio_path = "tapping.mp3"  # Path to your tapping audio file
+    rain_audio_path = "asmr_sounds/rain.mp3"  # Path to your rain audio file
+    tapping_audio_path = "asmr_sounds/tapping.mp3"  # Path to your tapping audio file
     asmr_audio_path = add_asmr_effects(whisper_audio_path, rain_audio_path, tapping_audio_path)
     if not asmr_audio_path:
         print("Failed to add ASMR effects.")

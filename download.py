@@ -6,8 +6,8 @@ def download_audio(youtube_url):
     try:
         # Download YouTube video as audio-only
         yt = YouTube(youtube_url)
-        stream = yt.streams.get_audio_only()
-        audio_file_path = stream.download(filename="video.mp4")
+        stream = yt.streams.get_highest_resolution()#download in mp4 format
+        audio_file_path = stream.download(filename="video")
 
         # Convert to WAV for further processing
         audio_clip = AudioFileClip(audio_file_path)
