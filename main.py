@@ -49,7 +49,7 @@ if __name__ == "__main__":
     print(f"ASMR-enhanced audio saved at: {asmr_audio_path}")
 
     # Part 5: Merge the ASMR-enhanced audio back with the original video
-    video_file_path = "video.mp4.m4a"  # Path to the downloaded video
+    video_file_path = "video.mp4"  # Path to the downloaded video
     output_file_path = "final_video_with_audio.mp4"
 
     merged_video_path = merge_audio_with_video(video_file_path, asmr_audio_path, output_file_path)
