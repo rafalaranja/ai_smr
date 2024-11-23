@@ -1,16 +1,15 @@
-from pytube import YouTube
-from moviepy.audio import AudioClip
-
+from pytubefix import YouTube
+from moviepy import AudioFileClip
 
 def download_audio(youtube_url):
     try:
         # Download YouTube video as audio-only
         yt = YouTube(youtube_url)
-        stream = yt.streams.filter(only_audio=True).first()
+        stream = yt.streams.get_audio_only()
         audio_file_path = stream.download(filename="audio.mp4")
 
         # Convert to WAV for further processing
-        audio_clip = AudioClip.AudioClip(audio_file_path)
+        audio_clip = AudioFileClip(audio_file_path)
         output_audio_path = "audio.wav"
         audio_clip.write_audiofile(output_audio_path)
 
@@ -21,7 +20,6 @@ def download_audio(youtube_url):
         return None
 
 # Main
-
 if __name__ == "__main__":
     youtube_url = input("Enter YouTube URL: ")
     audio_path = download_audio(youtube_url)
@@ -29,5 +27,3 @@ if __name__ == "__main__":
         print(f"Downloaded audio file path: {audio_path}")
     else:
         print("Failed to download audio.")
-
-
