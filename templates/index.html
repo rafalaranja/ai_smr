@@ -26,13 +26,13 @@
     <title>AI_SMR</title>
   </head>
   <body>
-    <div class="container ,mt-5">
+    <div class="container mt-5">
       <h1 class="text-center pb-2">AI_SMR</h1>
-      <h2 class="text-center pb-4">AI Youtube Video Converter to ASMR</h2>
+      <h2 class="text-center pb-4">AI YouTube Video Converter to ASMR</h2>
       <div class="row d-flex justify-content-between align-items-center">
         <!-- Left Column -->
         <div class="col ms-5">
-          <form id="video-form">
+          <form action="/process" method="POST">
             <label for="youtube-url" class="form-label fs-4"
               >Enter YouTube URL:</label
             >
@@ -40,7 +40,7 @@
               class="form-control shadow"
               type="text"
               id="youtube-url"
-              name="youtube-url"
+              name="youtube_url"
               required
             />
             <button type="submit" class="btn btn-info mt-2 text-white shadow">
@@ -49,14 +49,20 @@
           </form>
         </div>
 
-        <!-- Right Column -->
+        <div id="loading-spinner" class="spinner-border text-info" role="status" style="display: none;">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        
+
+        <!-- Right Column 
         <div class="col ms-5">
           <div id="video-container">
             <video id="video" controls class="rounded-3"></video>
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
+
     <!-- JS Script -->
     <script src="/static/scripts.js"></script>
     <!-- Bootstrap Import -->

@@ -40,3 +40,17 @@ h2.text-center {
   max-width: 800px; /* Optional: Limit the container width */
   width: 100%; /* Make it responsive */
 }
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  margin: 1rem auto;
+  display: block;
+}
+
+#loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
