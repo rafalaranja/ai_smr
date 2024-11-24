@@ -18,12 +18,11 @@ def add_asmr_effects(input_audio_path, rain_audio_path="rain.mp3", tapping_audio
         rain_audio = match_duration(rain_audio, len(audio))
         tapping_audio = match_duration(tapping_audio, len(audio))
 
+        # Adjust the volume levels
+        tapping_audio = tapping_audio + 12  # Increase tapping volume by 12 dB
+
         # Overlay rain and tapping onto the main audio
         combined_audio = audio.overlay(rain_audio).overlay(tapping_audio)
-
-        # Adjust the volume levels
-        rain_audio = rain_audio - 35  # Reduce rain volume by 35 dB
-        tapping_audio = tapping_audio + 10  # Increase tapping volume by 10 dB
 
         # Save the ASMR-enhanced audio
         output_audio_path = "asmr_audio.wav"
