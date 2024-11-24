@@ -1,0 +1,8 @@
+flask
+openai-whisper
+warnings
+pytubefix
+elevenlabs
+moviepy
+pydub
+os
