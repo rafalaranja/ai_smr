@@ -1,3 +1,5 @@
+This project was developed during a hackathon that me (Jorge) and Rafael participated in that lasted 48h.
+
 Problem scenario:
 
 As asmr enjoyers and big content consumers ourselfs, we came across a challenge that didn't quite have a solution yet,
